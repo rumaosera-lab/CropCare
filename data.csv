@@ -1,0 +1,4 @@
+crop,health,yield,disease
+Rice,Good,85,No disease
+Wheat,Moderate,60,Fungal infection risk
+Corn,Bad,40,Leaf blight
