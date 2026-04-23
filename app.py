@@ -150,6 +150,6 @@ elif menu == "Disease Detection":
 
         if not result.empty:
             st.success("Disease Info:")
-            st.write(result.iloc[0]["disease"])
+            st.write("Possible issue based on health:", selected_health)
         else:
             st.warning("No matching record found")
