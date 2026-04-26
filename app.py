@@ -18,7 +18,7 @@ st.markdown("""
     }
     </style>
 """, unsafe_allow_html=True)
-st.title("🌱 CropCare Dashboard")
+st.title("CropCare Dashboard")
 
 # File setup
 FILE = "data.csv"
@@ -38,7 +38,7 @@ menu = st.radio(
     horizontal=True
 )
 if menu == "Crop Recommendation":
-    st.subheader("🌱 Crop Recommendation System")
+    st.subheader("Crop Recommendation System")
 
     n = st.number_input("Nitrogen")
     p = st.number_input("Phosphorus")
@@ -60,22 +60,22 @@ uploaded_file = st.sidebar.file_uploader(
 
 # ---------------- DASHBOARD ----------------
 if menu == "Dashboard":
-    st.subheader("📊 Crop Overview")
+    st.subheader("Crop Overview")
 
     col1, col2, col3 = st.columns(3)
 
-    col1.metric("🌾 Total Crops", len(data))
-    col2.metric("📈 Avg Yield", int(data["yield"].mean()) if len(data) > 0 else 0)
+    col1.metric("Total Crops", len(data))
+    col2.metric("Avg Yield", int(data["yield"].mean()) if len(data) > 0 else 0)
 
     healthy = len(data[data["health"] == "Good"])
-    col3.metric("✅ Healthy Crops", healthy)
+    col3.metric("Healthy Crops", healthy)
 
-    st.markdown("### 📋 Crop Data")
+    st.markdown("Crop Data")
     st.dataframe(data, use_container_width=True)
 
 # ---------------- ADD DATA ----------------
 elif menu == "Add Crop Data":
-    st.subheader("➕ Add New Crop")
+    st.subheader("Add New Crop")
 
     col1, col2 = st.columns(2)
 
@@ -94,12 +94,12 @@ elif menu == "Add Crop Data":
             })
 
             new_data.to_csv(FILE, mode='a', header=False, index=False)
-            st.success("✅ Crop data added successfully!")
+            st.success("Crop data added successfully!")
             st.rerun()
 
 # ---------------- ANALYTICS ----------------
 elif menu == "Analytics":
-    st.subheader("📈 Crop Analytics")
+    st.subheader("Crop Analytics")
 
     if len(data) > 0:
         col1, col2 = st.columns(2)
@@ -111,7 +111,7 @@ elif menu == "Analytics":
 
 # ---------------- ALERTS ----------------
 elif menu == "Alerts":
-    st.subheader("⚠️ Alerts")
+    st.subheader("Alerts")
 
     if len(data) == 0:
         st.info("No data available")
@@ -125,7 +125,7 @@ elif menu == "Alerts":
                 st.success(f"{row['crop']} is healthy")
 
 elif menu == "Image Upload":
-    st.subheader("📸 Crop Image Analysis")
+    st.subheader("Crop Image Analysis")
 
     uploaded_image = st.file_uploader("Upload Crop Image", type=["jpg", "png", "jpeg"])
 
@@ -137,7 +137,7 @@ elif menu == "Image Upload":
         col2.info("Analyzing image...")
         col2.success("Possible Issue: Leaf infection (demo)")
 elif menu == "Disease Detection":
-    st.subheader("🌾 Disease Detection")
+    st.subheader("Disease Detection")
 
     selected_crop = st.selectbox("Select Crop", data["crop"].unique())
     selected_health = st.selectbox("Select Health", data["health"].unique())
